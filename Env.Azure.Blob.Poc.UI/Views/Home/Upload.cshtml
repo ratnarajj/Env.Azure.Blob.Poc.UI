@@ -1,0 +1,39 @@
+﻿<h2>Upload File</h2>
+@{
+    ViewData["Title"] = "Upload New File";
+    var errorMessage = TempData[Env.Azure.Blob.Poc.UI.Controllers.HomeController.ErrorMessageKey] as string;
+    var successMessage = TempData[Env.Azure.Blob.Poc.UI.Controllers.HomeController.SuccessMessageKey] as string;
+}
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger  mb-2" role="alert">
+        @errorMessage
+    </div>
+}
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success mb-2" role="alert">
+        @successMessage
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data" asp-action="Upload">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="file">Select File:</label>
+                </div>
+                <div class="col-md-12">
+                    <input type="file" class="form-control-file" id="file" name="file" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
